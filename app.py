@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 st.set_page_config(page_title="Rugby Club Stats", layout="wide")
-st.title("🏉 Estadísticas del Club")
+st.title("Estadísticas PS")
 st.markdown("---")
 
 DATA_DIR = "Data"
