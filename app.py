@@ -9,8 +9,6 @@ st.markdown("---")
 DATA_DIR = "Data"
 
 @st.cache_data(ttl=300)
-st.write("Tackles columns:", tackles_df.columns.tolist())
-st.write("Pases columns:", pases_df.columns.tolist())
 
 def load_all_matches():
     tackles_list = []
@@ -48,7 +46,8 @@ def load_all_matches():
     pases = pd.concat(pases_list, ignore_index=True) if pases_list else pd.DataFrame()
 
     return tackles, pases
-
+st.write("Tackles columns:", tackles_df.columns.tolist())
+st.write("Pases columns:", pases_df.columns.tolist())
 tackles_df, pases_df = load_all_matches()
 
 if tackles_df.empty:
