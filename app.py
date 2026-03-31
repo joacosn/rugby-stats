@@ -43,8 +43,8 @@ def load_all_matches():
 
     # Calculated columns
     if not tackles.empty:
-        tackles["Total"] = tackles["Positivo"] + tackles["Neutro"] + tackles["Negativo"] + tackles["Fallido"]
-        tackles["Eficiencia %"] = ((tackles["Positivo"] + tackles["Neutro"]) / tackles["Total"] * 100).round(1)
+        tackles["Total"] = tackles["Positivo"] + tackles["Neutro"] + tackles["Negativo"]
+        tackles["Eficiencia %"] = ((tackles["Total"] - tackles["Fallido"]) / tackles["Total"] * 100).round(1)
 
     if not pases.empty:
         pases["Total"] = pases["Acertado"] + pases["Fallido"]
@@ -76,8 +76,9 @@ if page == "Resumen del Partido":
     st.markdown("---")
 
     # Team headline metrics
-    total_tackles = ft["Total"].sum()
-    team_tackle_eff = ((ft["Positivo"].sum() + ft["Neutro"].sum()) / ft["Total"].sum() * 100).round(1)
+    total_tackles = ft["Positivo"].sum() + ft["Neutro"].sum() + ft["Negativo"].sum()
+    total_fallidos = ft["Fallido"].sum()
+    team_tackle_eff = ((total_tackles - total_fallidos) / total_tackles * 100).round(1)
     total_pases = fp["Total"].sum()
     team_pase_eff = (fp["Acertado"].sum() / fp["Total"].sum() * 100).round(1)
 
