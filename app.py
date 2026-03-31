@@ -79,10 +79,3 @@ with col2:
         use_container_width=True,
         hide_index=True
     )
-```
-
-And your `requirements.txt`:
-```
-streamlit
-pandas
-openpyxl
