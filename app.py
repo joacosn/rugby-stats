@@ -131,22 +131,18 @@ with tab2:
             filtered_tackles.groupby("jugador")["total"]
             .sum().reset_index()
             .sort_values("total", ascending=False)
+            .set_index("jugador")
         )
-        fig1 = px.bar(rank_tackles, x="total", y="jugador", orientation="h",
-                      color="total", color_continuous_scale="Reds")
-        fig1.update_layout(showlegend=False, coloraxis_showscale=False, yaxis_title="")
-        st.plotly_chart(fig1, use_container_width=True)
+        st.bar_chart(rank_tackles)
 
         st.subheader("Mejor efectividad en tackles (%)")
         rank_teff = (
             filtered_tackles.groupby("jugador")["efectividad"]
             .mean().round(1).reset_index()
             .sort_values("efectividad", ascending=False)
+            .set_index("jugador")
         )
-        fig2 = px.bar(rank_teff, x="efectividad", y="jugador", orientation="h",
-                      color="efectividad", color_continuous_scale="Greens")
-        fig2.update_layout(showlegend=False, coloraxis_showscale=False, yaxis_title="")
-        st.plotly_chart(fig2, use_container_width=True)
+        st.bar_chart(rank_teff)
 
     with col2:
         st.subheader("Más pases totales")
@@ -154,22 +150,18 @@ with tab2:
             filtered_pases.groupby("jugador")["total"]
             .sum().reset_index()
             .sort_values("total", ascending=False)
+            .set_index("jugador")
         )
-        fig3 = px.bar(rank_pases, x="total", y="jugador", orientation="h",
-                      color="total", color_continuous_scale="Blues")
-        fig3.update_layout(showlegend=False, coloraxis_showscale=False, yaxis_title="")
-        st.plotly_chart(fig3, use_container_width=True)
+        st.bar_chart(rank_pases)
 
         st.subheader("Mejor efectividad en pases (%)")
         rank_peff = (
             filtered_pases.groupby("jugador")["efectividad"]
             .mean().round(1).reset_index()
             .sort_values("efectividad", ascending=False)
+            .set_index("jugador")
         )
-        fig4 = px.bar(rank_peff, x="efectividad", y="jugador", orientation="h",
-                      color="efectividad", color_continuous_scale="Purples")
-        fig4.update_layout(showlegend=False, coloraxis_showscale=False, yaxis_title="")
-        st.plotly_chart(fig4, use_container_width=True)
+        st.bar_chart(rank_peff)
 
 # ── TAB 3: Player profile ─────────────────────────────────────
 with tab3:
