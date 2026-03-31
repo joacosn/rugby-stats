@@ -29,11 +29,11 @@ def load_all_matches():
         filepath = os.path.join(DATA_DIR, filename)
         match_label = f"{division} | {our_team} vs {opponent}"
 
-        df_tackles = pd.read_excel(filepath, sheet_name="tackles")
+        df_tackles = pd.read_excel(filepath, sheet_name="Tackles")
         df_tackles["partido"] = match_label
         tackles_list.append(df_tackles)
 
-        df_pases = pd.read_excel(filepath, sheet_name="pases")
+        df_pases = pd.read_excel(filepath, sheet_name="Pases")
         df_pases["partido"] = match_label
         pases_list.append(df_pases)
 
