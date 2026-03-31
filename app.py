@@ -46,14 +46,14 @@ def load_all_matches():
     pases = pd.concat(pases_list, ignore_index=True) if pases_list else pd.DataFrame()
 
     return tackles, pases
-st.write("Tackles columns:", tackles_df.columns.tolist())
-st.write("Pases columns:", pases_df.columns.tolist())
+
 tackles_df, pases_df = load_all_matches()
 
 if tackles_df.empty:
     st.warning("No se encontraron archivos en la carpeta /data. Subí al menos un par de archivos .csv para comenzar.")
     st.stop()
-
+st.write("Tackles columns:", tackles_df.columns.tolist())
+st.write("Pases columns:", pases_df.columns.tolist())
 # ── Partido filter ────────────────────────────────────────────
 partidos = ["Todos los partidos"] + sorted(tackles_df["partido"].unique().tolist())
 selected_partido = st.selectbox("Seleccioná un partido", partidos)
