@@ -52,8 +52,8 @@ tackles_df, pases_df = load_all_matches()
 if tackles_df.empty:
     st.warning("No se encontraron archivos en la carpeta /data. Subí al menos un par de archivos .csv para comenzar.")
     st.stop()
-st.write("Tackles columns:", tackles_df.columns.tolist())
-st.write("Pases columns:", pases_df.columns.tolist())
+# st.write("Tackles columns:", tackles_df.columns.tolist())
+# st.write("Pases columns:", pases_df.columns.tolist())
 # ── Partido filter ────────────────────────────────────────────
 partidos = ["Todos los partidos"] + sorted(tackles_df["partido"].unique().tolist())
 selected_partido = st.selectbox("Seleccioná un partido", partidos)
@@ -73,7 +73,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Tackles")
     st.dataframe(
-        filtered_tackles[["Jugador", "Positivos", "Neutros", "Negativos", "Fallidos"]],
+        filtered_tackles[["Jugador", "Positivo", "Neutro", "Negativo", "Fallido"]],
         use_container_width=True,
         hide_index=True
     )
