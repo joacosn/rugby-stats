@@ -71,7 +71,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Tackles")
     st.dataframe(
-        filtered_tackles[["jugador", "positivos", "neutros", "negativos", "fallidos"]],
+        filtered_tackles[["Jugador", "Positivos", "Neutros", "Negativos", "Fallidos"]],
         use_container_width=True,
         hide_index=True
     )
@@ -79,7 +79,7 @@ with col1:
 with col2:
     st.subheader("Pases")
     st.dataframe(
-        filtered_pases[["jugador", "acertado", "fallido"]],
+        filtered_pases[["Jugador", "Acertado", "Fallido"]],
         use_container_width=True,
         hide_index=True
     )
