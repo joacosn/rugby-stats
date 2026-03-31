@@ -1,43 +1,43 @@
-import subprocess
-import sys
-subprocess.check_call([sys.executable, "-m", "pip", "install", "openpyxl"])
-
 import streamlit as st
 import pandas as pd
 import os
 
-# ── Page config ───────────────────────────────────────────────
 st.set_page_config(page_title="Rugby Club Stats", layout="wide")
-
 st.title("🏉 Estadísticas del Club")
 st.markdown("---")
 
-# ── Load all match files from /data folder ────────────────────
-DATA_DIR = "Data"
+DATA_DIR = "data"
 
 @st.cache_data(ttl=300)
 def load_all_matches():
     tackles_list = []
     pases_list = []
 
-    for filename in os.listdir(DATA_DIR):
-        if not filename.endswith(".xlsx"):
+    files = os.listdir(DATA_DIR)
+
+    # Find all tackles files and match with pases
+    for filename in files:
+        if not filename.endswith("_Tackles.csv"):
             continue
 
-        name = filename.replace(".xlsx", "")
-        parts = name.split("_")
+        base = filename.replace("_Tackles.csv", "")
+        pases_file = base + "_Pases.csv"
+
+        if pases_file not in files:
+            continue
+
+        parts = base.split("_")
         if len(parts) != 3:
             continue
 
         division, our_team, opponent = parts
-        filepath = os.path.join(DATA_DIR, filename)
         match_label = f"{division} | {our_team} vs {opponent}"
 
-        df_tackles = pd.read_excel(filepath, sheet_name="Tackles")
+        df_tackles = pd.read_csv(os.path.join(DATA_DIR, filename))
         df_tackles["partido"] = match_label
         tackles_list.append(df_tackles)
 
-        df_pases = pd.read_excel(filepath, sheet_name="Pases")
+        df_pases = pd.read_csv(os.path.join(DATA_DIR, pases_file))
         df_pases["partido"] = match_label
         pases_list.append(df_pases)
 
@@ -49,7 +49,7 @@ def load_all_matches():
 tackles_df, pases_df = load_all_matches()
 
 if tackles_df.empty:
-    st.warning("No se encontraron archivos en la carpeta /Data. Subí al menos un archivo .xlsx para comenzar.")
+    st.warning("No se encontraron archivos en la carpeta /data. Subí al menos un par de archivos .csv para comenzar.")
     st.stop()
 
 # ── Partido filter ────────────────────────────────────────────
