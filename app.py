@@ -6,7 +6,7 @@ st.set_page_config(page_title="Rugby Club Stats", layout="wide")
 st.title("🏉 Estadísticas del Club")
 st.markdown("---")
 
-DATA_DIR = "data"
+DATA_DIR = "Data"
 
 @st.cache_data(ttl=300)
 def load_all_matches():
