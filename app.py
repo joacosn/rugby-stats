@@ -204,7 +204,7 @@ with tab3:
             )
 
 
-And your `requirements.txt`:
+And your 'requirements.txt':
 streamlit
 pandas
 openpyxl
