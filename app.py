@@ -202,10 +202,3 @@ with tab3:
                 filtered_pases[["match", "acertado", "fallido", "efectividad"]],
                 use_container_width=True, hide_index=True
             )
-
-
-And your "requirements.txt":
-streamlit
-pandas
-openpyxl
-plotly
