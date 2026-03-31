@@ -9,6 +9,9 @@ st.markdown("---")
 DATA_DIR = "Data"
 
 @st.cache_data(ttl=300)
+st.write("Tackles columns:", tackles_df.columns.tolist())
+st.write("Pases columns:", pases_df.columns.tolist())
+
 def load_all_matches():
     tackles_list = []
     pases_list = []
